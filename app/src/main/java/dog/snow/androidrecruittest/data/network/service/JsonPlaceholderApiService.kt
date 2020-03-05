@@ -1,9 +1,9 @@
 package dog.snow.androidrecruittest.data.network.service
 
 import android.content.Context
-import dog.snow.androidrecruittest.data.network.service.model.RawAlbum
-import dog.snow.androidrecruittest.data.network.service.model.RawPhoto
-import dog.snow.androidrecruittest.data.network.service.model.RawUser
+import dog.snow.androidrecruittest.data.db.entityes.RawAlbum
+import dog.snow.androidrecruittest.data.db.entityes.RawPhoto
+import dog.snow.androidrecruittest.data.db.entityes.RawUser
 import dog.snow.androidrecruittest.data.network.retrofit.RetrofitFactory
 import dog.snow.androidrecruittest.data.network.retrofit.RetrofitFactory.RetrofitType.JSON_PLACEHOLDER
 import kotlinx.coroutines.Deferred

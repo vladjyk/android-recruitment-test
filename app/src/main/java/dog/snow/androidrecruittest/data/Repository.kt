@@ -1,47 +1,51 @@
 package dog.snow.androidrecruittest.data
 
-import androidx.lifecycle.LiveData
 import dog.snow.androidrecruittest.data.db.ApplicationDatabase
-import dog.snow.androidrecruittest.data.db.entityes.ItemDetail
-import dog.snow.androidrecruittest.data.db.entityes.ListItem
+import dog.snow.androidrecruittest.data.db.entityes.RawAlbum
+import dog.snow.androidrecruittest.data.db.entityes.RawPhoto
+import dog.snow.androidrecruittest.data.db.entityes.RawUser
 import dog.snow.androidrecruittest.data.network.service.JsonPlaceholderApiService
-import dog.snow.androidrecruittest.data.network.service.model.RawAlbum
-import dog.snow.androidrecruittest.data.network.service.model.RawPhoto
-import dog.snow.androidrecruittest.data.network.service.model.RawUser
-import kotlinx.coroutines.Deferred
+import dog.snow.androidrecruittest.util.retryIO
 
-class Repository(private val placeholderApiService: JsonPlaceholderApiService, database: ApplicationDatabase) {
+class Repository(private val placeholderApiService: JsonPlaceholderApiService, database: ApplicationDatabase){
     private val listItemDao = database.listItemDao()
     private val itemDetailDao = database.itemDetailDao()
+    private val photoDao = database.photoDao()
+    private val albumDao = database.albumDao()
+    private val userDao = database.userDao()
 
-    fun insert(listItem: ListItem){
-        listItemDao.insert(listItem)
+    fun insertPhotos(photos: List<RawPhoto>){
+        photoDao.insert(photos)
     }
 
-    fun insert(itemDetail: ItemDetail){
-        itemDetailDao.insert(itemDetail)
+    fun insertAlbums(albums: Map<Int,RawAlbum>){
+        for ((_, album) in albums){
+            albumDao.insert(album)
+        }
+    }
+
+    fun insertUsers(users: Map<Int,RawUser>){
+        for ((_, user) in users){
+            userDao.insert(user)
+        }
     }
 
 
-    fun getAllListItems(): LiveData<List<ListItem>> {
-        return listItemDao.getAll()
+    fun getListItems() = listItemDao.getAll()
+
+    fun getItemDetail(photoId: Int) = itemDetailDao.getItemDetail(photoId)
+
+
+    suspend fun getPhotos(limit: Int = 100) = retryIO{
+       return@retryIO placeholderApiService.getPhotos(limit).await()
     }
 
-    fun getItemDetail(photoId: Int): ItemDetail {
-        return itemDetailDao.getItemDetail(photoId)
+    suspend fun getAlbum(albumId: Int) = retryIO {
+        return@retryIO placeholderApiService.getAlbum(albumId).await()
     }
 
-
-    fun getPhotos(limit: Int = 100): Deferred<List<RawPhoto>> {
-        return placeholderApiService.getPhotos(limit)
-    }
-
-    fun getAlbum(albumId: Int): Deferred<RawAlbum> {
-        return placeholderApiService.getAlbum(albumId)
-    }
-
-    fun getUser(userId: Int): Deferred<RawUser> {
-        return placeholderApiService.getUser(userId)
+    suspend fun getUser(userId: Int) = retryIO {
+        return@retryIO placeholderApiService.getUser(userId).await()
     }
 
 }
