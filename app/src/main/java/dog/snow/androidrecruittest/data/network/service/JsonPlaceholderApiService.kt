@@ -5,6 +5,7 @@ import dog.snow.androidrecruittest.data.network.service.model.RawAlbum
 import dog.snow.androidrecruittest.data.network.service.model.RawPhoto
 import dog.snow.androidrecruittest.data.network.service.model.RawUser
 import dog.snow.androidrecruittest.data.network.retrofit.RetrofitFactory
+import dog.snow.androidrecruittest.data.network.retrofit.RetrofitFactory.RetrofitType.JSON_PLACEHOLDER
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,7 +25,7 @@ interface JsonPlaceholderApiService {
 
     companion object {
         operator fun invoke(context: Context) = RetrofitFactory
-            .getInstance(context)
+            .getInstance(context, JSON_PLACEHOLDER)
             .create(JsonPlaceholderApiService::class.java)!!
     }
 }
