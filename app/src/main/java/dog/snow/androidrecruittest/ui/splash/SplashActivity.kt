@@ -15,9 +15,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 
-class SplashActivity : AppCompatActivity(R.layout.splash_activity), KodeinAware {
-    override val kodein by closestKodein()
-    private val api by instance<JsonPlaceholderApiService>()
+class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
 
     private fun showError(errorMessage: String?) {
         MaterialAlertDialogBuilder(this)
@@ -30,14 +28,4 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity), KodeinAware 
             .show()
     }
 
-
-    override fun onResume() {
-        super.onResume()
-
-        GlobalScope.launch(IO) {
-            api.getUser(1).await().apply {
-                Log.wtf("WGSDSD", this.toString())
-            }
-        }
-    }
 }
