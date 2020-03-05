@@ -3,8 +3,18 @@ package dog.snow.androidrecruittest.ui.splash
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dog.snow.androidrecruittest.R
+import dog.snow.androidrecruittest.data.Repository
+import dog.snow.androidrecruittest.data.db.entityes.ListItem
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.closestKodein
+import org.kodein.di.generic.instance
 
-class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
+class SplashActivity : AppCompatActivity(R.layout.splash_activity), KodeinAware {
+    override val kodein by closestKodein()
+    private val repo by instance<Repository>()
 
     private fun showError(errorMessage: String?) {
         MaterialAlertDialogBuilder(this)
@@ -16,5 +26,4 @@ class SplashActivity : AppCompatActivity(R.layout.splash_activity) {
             .apply { setCanceledOnTouchOutside(false) }
             .show()
     }
-
 }
