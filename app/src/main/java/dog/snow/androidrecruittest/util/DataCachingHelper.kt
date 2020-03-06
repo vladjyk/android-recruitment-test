@@ -15,7 +15,7 @@ class DataCachingHelper(private val repository: Repository, private val networkU
     @Volatile
     private var isLocked = false
 
-    suspend fun start(onSuccess: () -> Unit) {
+    suspend fun startCaching(onSuccess: () -> Unit) {
         if (!isLocked) {
             if (!networkUtil.isNetworkAvailable())
                 throw NetworkDisabledException()
@@ -53,7 +53,7 @@ class DataCachingHelper(private val repository: Repository, private val networkU
         }
     }
 
-    suspend fun isDataCached(): Boolean {
+    fun isDataAlreadyCached(): Boolean {
         return with(repository) {
             getPhotosCount() != 0 && getAlbumsCount() != 0 && getUsersCount() != 0
         }

@@ -1,16 +1,24 @@
 package dog.snow.androidrecruittest.ui.splash
 
-import android.util.Log
+import android.content.Intent
+import android.os.Bundle
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dog.snow.androidrecruittest.R
-import dog.snow.androidrecruittest.data.Repository
 import dog.snow.androidrecruittest.extend.exception.NetworkDisabledException
 import dog.snow.androidrecruittest.extend.exception.SlowConnectivityException
+import dog.snow.androidrecruittest.extend.view.hide
+import dog.snow.androidrecruittest.extend.view.show
+import dog.snow.androidrecruittest.ui.main.MainActivity
 import dog.snow.androidrecruittest.util.DataCachingHelper
+import kotlinx.android.synthetic.main.splash_activity.*
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
@@ -20,33 +28,57 @@ const val TAG = "SplashActivity"
 
 class SplashActivity : AppCompatActivity(R.layout.splash_activity), KodeinAware {
     override val kodein by closestKodein()
-    private val chacher by instance<DataCachingHelper>()
-    private val repo by instance<Repository>()
+    private val cachingHelper by instance<DataCachingHelper>()
 
-    private fun showError(errorMessage: String?) {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.cant_download_dialog_title)
-            .setMessage(getString(R.string.cant_download_dialog_message, errorMessage))
-            .setPositiveButton(R.string.cant_download_dialog_btn_positive) { _, _ -> /*tryAgain()*/ }
-            .setNegativeButton(R.string.cant_download_dialog_btn_negative) { _, _ -> finish() }
-            .create()
-            .apply { setCanceledOnTouchOutside(false) }
-            .show()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        cacheData()
     }
 
+    private fun cacheData(){
+        progressbar.show()
 
-    override fun onResume() {
-        super.onResume()
         GlobalScope.launch (IO) {
             try {
-                chacher.start {
-                    Log.e(TAG, "Caching is successful complete")
+                cachingHelper.startCaching {
+                    showMainActivity()
                 }
             } catch (e: NetworkDisabledException){
-                Log.e(TAG, e.message, e)
+                showErrorDialog(R.string.network_is_disabled_dialog_message)
             } catch (e: SlowConnectivityException){
-                Log.e(TAG, e.message, e)
+                showErrorDialog(R.string.slow_connectivity_dialog_message)
+            } finally {
+                launch (Main) { progressbar.hide() }
             }
         }
+    }
+
+    private fun showErrorDialog(@StringRes errorMessage: Int) {
+        GlobalScope.launch (IO) {
+            val isCached = cachingHelper.isDataAlreadyCached()
+
+            launch (Main) {
+                MaterialAlertDialogBuilder(this@SplashActivity).apply {
+                    setTitle(R.string.cant_download_dialog_title)
+                    setMessage(getString(R.string.cant_download_dialog_message, getString(errorMessage)))
+                    .setPositiveButton(R.string.cant_download_dialog_btn_positive) { _, _ -> cacheData() }
+                    .setNegativeButton(R.string.cant_download_dialog_btn_negative) { _, _ -> finish() }
+
+                    if (isCached)
+                        setNeutralButton(R.string.cant_download_dialog_btn_neutral) {_, _ -> showMainActivity()}
+
+                    create()
+                        .apply { setCanceledOnTouchOutside(false) }
+                        .show()
+                    }
+            }
+        }
+    }
+
+    private fun showMainActivity(){
+        Intent(this, MainActivity::class.java).apply {
+            startActivity(this)
+        }
+        finish()
     }
 }
