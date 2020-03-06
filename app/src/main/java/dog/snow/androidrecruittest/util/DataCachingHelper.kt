@@ -3,23 +3,26 @@ package dog.snow.androidrecruittest.util
 import dog.snow.androidrecruittest.data.Repository
 import dog.snow.androidrecruittest.data.db.entityes.Album
 import dog.snow.androidrecruittest.data.db.entityes.User
+import dog.snow.androidrecruittest.extend.exception.NetworkDisabledException
 import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
-import java.lang.Exception
 
-private const val TAG = "DataCacher"
+private const val TAG = "DataCachingHelper"
+private const val NETWORK_TIMEOUT = 5000L
 
-class DataCacher(private val repository: Repository) {
+class DataCachingHelper(private val repository: Repository, private val networkUtil: NetworkUtil) {
 
     @Volatile
     private var isLocked = false
 
-    fun start(onSuccess: () -> Unit, onError: (e: Exception) -> Unit) {
+    suspend fun start(onSuccess: () -> Unit) {
         if (!isLocked) {
+            if (!networkUtil.isNetworkAvailable())
+                throw NetworkDisabledException()
+
             isLocked = true
 
-            GlobalScope.launch(IO) {
+            withTimeout(NETWORK_TIMEOUT, {
                 val albumsMap = HashMap<Int, Album>()
                 val usersMap = HashMap<Int, User>()
                 val photos = repository.getPhotos()
@@ -45,7 +48,14 @@ class DataCacher(private val repository: Repository) {
                 }
 
                 isLocked = false
-            }
+
+            }) { isLocked = false }
+        }
+    }
+
+    suspend fun isDataCached(): Boolean {
+        return with(repository) {
+            getPhotosCount() != 0 && getAlbumsCount() != 0 && getUsersCount() != 0
         }
     }
 }

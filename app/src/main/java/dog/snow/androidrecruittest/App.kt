@@ -4,7 +4,7 @@ import android.app.Application
 import dog.snow.androidrecruittest.data.Repository
 import dog.snow.androidrecruittest.data.db.ApplicationDatabase
 import dog.snow.androidrecruittest.data.network.service.JsonPlaceholderApiService
-import dog.snow.androidrecruittest.util.DataCacher
+import dog.snow.androidrecruittest.util.DataCachingHelper
 import dog.snow.androidrecruittest.util.NetworkUtil
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
@@ -22,7 +22,7 @@ class App: Application(), KodeinAware{
         bind() from singleton { JsonPlaceholderApiService(this@App) }
         bind() from singleton { ApplicationDatabase(this@App) }
         bind() from singleton { Repository(instance(), instance())}
-        bind() from singleton { DataCacher(instance())}
+        bind() from singleton { DataCachingHelper(instance(), instance())}
     }
 
 
