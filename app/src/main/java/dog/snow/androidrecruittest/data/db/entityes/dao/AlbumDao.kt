@@ -3,10 +3,14 @@ package dog.snow.androidrecruittest.data.db.entityes.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import dog.snow.androidrecruittest.data.db.entityes.RawAlbum
+import androidx.room.Query
+import dog.snow.androidrecruittest.data.db.entityes.Album
 
 @Dao
-interface RawAlbumDao {
+interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(album: RawAlbum)
+    fun insert(album: Album)
+
+    @Query("SELECT COUNT(id) FROM albums")
+    fun getItemsCount(): Int
 }

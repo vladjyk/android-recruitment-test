@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ListItem(
+data class PhotoWithExtendedInfo(
     val id: Int,
     val title: String,
     val albumTitle: String,

@@ -1,36 +1,50 @@
 package dog.snow.androidrecruittest.util
 
 import dog.snow.androidrecruittest.data.Repository
-import dog.snow.androidrecruittest.data.db.entityes.RawAlbum
-import dog.snow.androidrecruittest.data.db.entityes.RawUser
+import dog.snow.androidrecruittest.data.db.entityes.Album
+import dog.snow.androidrecruittest.data.db.entityes.User
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
 import java.lang.Exception
 
 private const val TAG = "DataCacher"
 
 class DataCacher(private val repository: Repository) {
 
+    @Volatile
+    private var isLocked = false
+
     fun start(onSuccess: () -> Unit, onError: (e: Exception) -> Unit) {
-        GlobalScope.launch(IO) {
-            val albumsMap = HashMap<Int, RawAlbum>()
-            val usersMap = HashMap<Int, RawUser>()
-            val photos = repository.getPhotos()
+        if (!isLocked) {
+            isLocked = true
 
-            photos.forEach { photo ->
-                if (albumsMap[photo.albumId] == null)
-                    albumsMap[photo.albumId] = repository.getAlbum(photo.albumId)
+            GlobalScope.launch(IO) {
+                val albumsMap = HashMap<Int, Album>()
+                val usersMap = HashMap<Int, User>()
+                val photos = repository.getPhotos()
 
-                val userId = albumsMap[photo.albumId]!!.userId
+                photos.forEach { photo ->
+                    if (albumsMap[photo.albumId] == null)
+                        albumsMap[photo.albumId] = repository.getAlbum(photo.albumId)
 
-                if (usersMap[userId] == null)
-                    usersMap[userId] = repository.getUser(userId)
-            }
+                    val userId = albumsMap[photo.albumId]!!.userId
 
-            repository.apply {
-                insertPhotos(photos)
-                insertAlbums(albumsMap)
-                insertUsers(usersMap)
+                    if (usersMap[userId] == null)
+                        usersMap[userId] = repository.getUser(userId)
+                }
+
+                repository.apply {
+                    insertPhotos(photos)
+                    insertAlbums(albumsMap)
+                    insertUsers(usersMap)
+                }
+
+                launch(Main) {
+                    onSuccess()
+                }
+
+                isLocked = false
             }
         }
     }

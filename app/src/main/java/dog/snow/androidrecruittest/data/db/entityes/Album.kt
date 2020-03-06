@@ -5,13 +5,11 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-@Entity(tableName = "photos")
+@Entity(tableName = "albums")
 @Parcelize
-data class RawPhoto(
+data class Album(
     @PrimaryKey
     val id: Int,
-    val albumId: Int,
-    val title: String,
-    val url: String,
-    val thumbnailUrl: String
+    val userId: Int,
+    val title: String
 ) : Parcelable

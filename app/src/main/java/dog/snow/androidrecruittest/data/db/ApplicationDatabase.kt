@@ -7,13 +7,13 @@ import androidx.room.RoomDatabase
 import dog.snow.androidrecruittest.data.db.entityes.*
 import dog.snow.androidrecruittest.data.db.entityes.dao.*
 
-@Database(entities = [RawPhoto::class, RawAlbum::class, RawUser::class], version = 2, exportSchema = false)
+@Database(entities = [Photo::class, Album::class, User::class], version = 4, exportSchema = false)
 abstract class ApplicationDatabase: RoomDatabase() {
-    abstract fun itemDetailDao(): ItemDetailDao
-    abstract fun listItemDao(): ListItemDao
-    abstract fun photoDao(): RawPhotoDao
-    abstract fun albumDao(): RawAlbumDao
-    abstract fun userDao(): RawUserDao
+    abstract fun photoDetailDao(): PhotoDetailDao
+    abstract fun photoWithExtendInfoDao(): PhotoWithExtendedInfoDao
+    abstract fun photoDao(): PhotoDao
+    abstract fun albumDao(): AlbumDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile private var instance: ApplicationDatabase? = null
