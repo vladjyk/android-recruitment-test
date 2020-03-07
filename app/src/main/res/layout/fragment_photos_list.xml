@@ -17,38 +17,12 @@
     </data>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".ui.main.MainActivity">
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_normal">
-
-            <EditText
-                android:id="@+id/tv_search_input"
-                app:layout_constraintTop_toTopOf="parent"
-                style="@style/SearchEditTextStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search_hint"/>
-
-            <ImageView
-                android:layout_width="@dimen/standard_icon_size"
-                android:layout_height="@dimen/standard_icon_size"
-                android:src="@drawable/ic_close"
-                android:layout_marginEnd="@dimen/margin_normal"
-                app:layout_constraintTop_toTopOf="@id/tv_search_input"
-                app:layout_constraintBottom_toBottomOf="@id/tv_search_input"
-                app:layout_constraintEnd_toEndOf="@id/tv_search_input"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -58,6 +32,6 @@
             tools:listitem="@layout/photos_list_item"
             tools:visibility="visible" />
 
-    </LinearLayout>
+    </FrameLayout>
 
 </layout>
