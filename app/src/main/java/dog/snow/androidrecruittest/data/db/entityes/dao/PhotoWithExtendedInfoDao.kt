@@ -10,5 +10,8 @@ interface PhotoWithExtendedInfoDao {
     @Query("SELECT photos.id, photos.title, albums.title AS albumTitle, photos.thumbnailUrl " +
             "FROM photos, albums " +
             "WHERE photos.albumId == albums.id")
-    fun getAll(): LiveData<List<PhotoWithExtendedInfo>>
+    fun getAll(): List<PhotoWithExtendedInfo>
+
+    @Query("SELECT photos.id, photos.title, albums.title AS albumTitle, photos.thumbnailUrl FROM photos, albums WHERE photos.albumId == albums.id AND photos.title LIKE '%' || :title || '%' OR albums.title LIKE '%' || :title || '%'")
+    fun getAllWithTitle(title: String): List<PhotoWithExtendedInfo>
 }

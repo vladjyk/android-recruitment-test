@@ -49,6 +49,7 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
             viewModel.getPhotosWithExtendedInfo().observe(viewLifecycleOwner, Observer {
                 binding.photos = it
             })
+            viewModel.fetchAll()
         }
 
         initBinding()
@@ -72,7 +73,10 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    Toast.makeText(context, newText, Toast.LENGTH_SHORT).show()
+                    if (newText.isNullOrEmpty())
+                        viewModel.fetchAll()
+                    else viewModel.fetchWithTitle(newText)
+
                     return false
                 }
             })

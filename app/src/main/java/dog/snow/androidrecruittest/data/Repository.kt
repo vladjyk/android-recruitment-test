@@ -33,6 +33,8 @@ class Repository(private val placeholderApiService: JsonPlaceholderApiService, d
 
     fun getAllPhotosWithExtendedInfo() = photoWithExtendedInfoDao.getAll()
 
+    fun getPhotosWithExtendedInfo(title: String) = photoWithExtendedInfoDao.getAllWithTitle(title)
+
     fun getPhotoDetail(photoId: Int) = photoDetailDao.getPhotoDetail(photoId)
 
     fun getPhotosCount() = photoDao.getItemsCount()
