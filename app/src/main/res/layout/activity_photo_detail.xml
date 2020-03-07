@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="dog.snow.androidrecruittest.ui.main.fragments.detail.model.PhotoDetail"/>
+        <import type="dog.snow.androidrecruittest.ui.main.child.model.PhotoDetail"/>
 
         <variable
             name="photoDetail"
@@ -10,9 +12,14 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/appbar_child_layout"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/margin_normal">
@@ -86,4 +93,5 @@
             tools:text="123-456-789" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </LinearLayout>
 </layout>

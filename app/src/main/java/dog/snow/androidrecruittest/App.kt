@@ -4,7 +4,7 @@ import android.app.Application
 import dog.snow.androidrecruittest.data.Repository
 import dog.snow.androidrecruittest.data.db.ApplicationDatabase
 import dog.snow.androidrecruittest.data.network.service.JsonPlaceholderApiService
-import dog.snow.androidrecruittest.ui.main.fragments.detail.vm.PhotoDetailFragmentVMF
+import dog.snow.androidrecruittest.ui.main.child.vm.PhotoDetailActivityVMF
 import dog.snow.androidrecruittest.ui.main.fragments.list.vm.PhotosListFragmentVMF
 import dog.snow.androidrecruittest.util.DataCachingHelper
 import dog.snow.androidrecruittest.util.NetworkUtil
@@ -28,11 +28,7 @@ class App: Application(), KodeinAware{
         bind() from singleton { DataCachingHelper(instance(), instance())}
 
         bind() from provider { PhotosListFragmentVMF(instance()) }
-        bind() from provider {
-            PhotoDetailFragmentVMF(
-                instance()
-            )
-        }
+        bind() from provider { PhotoDetailActivityVMF(instance())}
     }
 
 

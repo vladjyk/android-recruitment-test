@@ -4,4 +4,11 @@
     <style name="Widget.AppTheme.AppBar" parent="@style/Widget.Design.AppBarLayout" />
 
     <style name="Widget.AppTheme.Banner" parent="@style/Widget.MaterialComponents.TextView" />
+
+    <style name="SearchEditTextStyle">
+        <item name="android:background">@drawable/bg_search_selector</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:imeOptions">flagNoExtractUi</item>
+        <item name="android:inputType">textCapSentences</item>
+    </style>
 </resources>
