@@ -10,6 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.FragmentPhotosListBinding
+import dog.snow.androidrecruittest.ui.main.MainActivity
+import dog.snow.androidrecruittest.ui.main.fragments.detail.KEY_PHOTO_ID
+import dog.snow.androidrecruittest.ui.main.fragments.detail.PhotoDetailFragment
 import dog.snow.androidrecruittest.ui.main.fragments.list.adapters.PhotosListAdapter
 import dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo
 import dog.snow.androidrecruittest.ui.main.fragments.list.vm.PhotosListFragmentVM
@@ -52,6 +55,19 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
     }
 
     override fun onClick(item: PhotoWithExtendedInfo) {
+        context as MainActivity
+        val id = item.id
+        val args = Bundle().apply {
+            putInt(KEY_PHOTO_ID, id)
+        }
+        val frag = PhotoDetailFragment().apply {
+            arguments = args
+        }
 
+        (context as MainActivity).supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, frag)
+            .addToBackStack("Abrakadabra")
+            .commitAllowingStateLoss()
     }
 }
