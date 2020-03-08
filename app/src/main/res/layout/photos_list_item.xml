@@ -3,15 +3,10 @@
 <layout>
     <data>
         <import type="dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo"/>
-        <import type="dog.snow.androidrecruittest.ui.main.fragments.list.adapters.PhotosListAdapter.ItemInteractionListener"/>
 
         <variable
             name="item"
             type="PhotoWithExtendedInfo" />
-
-        <variable
-            name="listener"
-            type="ItemInteractionListener" />
 
     </data>
 
@@ -21,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?selectableItemBackground"
-        android:padding="@dimen/margin_normal"
-        android:onClick="@{()-> listener.onClick(item)}">
+        android:padding="@dimen/margin_normal">
 
         <ImageView
             android:id="@+id/iv_thumb"
@@ -33,7 +27,8 @@
             android:src="?attr/colorPrimary"
             android:imageUrl="@{item.thumbnailUrl}"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:transitionName="image_transition"/>
 
         <TextView
             android:id="@+id/tv_photo_title"

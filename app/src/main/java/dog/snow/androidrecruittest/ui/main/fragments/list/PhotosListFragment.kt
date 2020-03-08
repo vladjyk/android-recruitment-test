@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.widget.addTextChangedListener
@@ -87,7 +88,7 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onClick(item: PhotoWithExtendedInfo) {
-        (context as MainActivity).showDetailActivity(item.id)
+    override fun onClick(item: PhotoWithExtendedInfo, imageView: ImageView) {
+        (context as MainActivity).showDetailActivity(item.id, imageView)
     }
 }

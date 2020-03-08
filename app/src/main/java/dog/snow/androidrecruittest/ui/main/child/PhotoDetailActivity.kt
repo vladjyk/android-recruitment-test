@@ -1,6 +1,7 @@
 package dog.snow.androidrecruittest.ui.main.child
 
 import android.os.Bundle
+import android.transition.Fade
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -8,8 +9,8 @@ import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.ActivityPhotoDetailBinding
 import dog.snow.androidrecruittest.ui.main.child.vm.PhotoDetailActivityVM
 import dog.snow.androidrecruittest.ui.main.child.vm.PhotoDetailActivityVMF
-import kotlinx.android.synthetic.main.activity_photo_detail.*
 import kotlinx.android.synthetic.main.appbar_child_layout.*
+import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import org.kodein.di.KodeinAware
@@ -30,6 +31,16 @@ class PhotoDetailActivity : AppCompatActivity(), KodeinAware{
             binding = DataBindingUtil.setContentView(this, R.layout.activity_photo_detail)
         }
 
+        fun excludeTransitionAnimation(){
+            val fade = Fade()
+            fade.excludeTarget(R.id.appbar, true)
+            fade.excludeTarget(android.R.id.statusBarBackground, true)
+            fade.excludeTarget(android.R.id.navigationBarBackground, true)
+
+            window.enterTransition = fade
+            window.exitTransition = fade
+        }
+
         fun initActionBar(){
             setSupportActionBar(toolbar)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -44,15 +55,25 @@ class PhotoDetailActivity : AppCompatActivity(), KodeinAware{
                 val photoId = intent.getIntExtra(EXTRA_PHOTO_ID, -1)
 
                 GlobalScope.launch {
-                    binding.photoDetail = viewModel.getPhotoDetail(photoId)
+                    val photoDetail = viewModel.getPhotoDetail(photoId)
+                    binding.photoDetail = photoDetail
+                    launch (Main) {
+                        title = photoDetail.photoTitle
+                    }
                 }
             }
         }
 
         super.onCreate(savedInstanceState)
         initBinding()
+        excludeTransitionAnimation()
         initActionBar()
         initViewModel()
         bindData()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

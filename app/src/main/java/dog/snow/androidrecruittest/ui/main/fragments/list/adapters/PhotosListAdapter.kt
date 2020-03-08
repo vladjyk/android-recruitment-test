@@ -2,6 +2,7 @@ package dog.snow.androidrecruittest.ui.main.fragments.list.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -28,9 +29,15 @@ class PhotosListAdapter(private val listener: ItemInteractionListener) :
     inner class ViewHolder(private val binding: PhotosListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: PhotoWithExtendedInfo) {
+            fun setItemClickListener(){
+                binding.root.setOnClickListener {
+                    listener.onClick(item, binding.ivThumb)
+                }
+            }
+
             binding.item = item
-            binding.listener = listener
             binding.executePendingBindings()
+            setItemClickListener()
         }
     }
 
@@ -45,6 +52,6 @@ class PhotosListAdapter(private val listener: ItemInteractionListener) :
     }
 
     interface ItemInteractionListener{
-        fun onClick(item: PhotoWithExtendedInfo)
+        fun onClick(item: PhotoWithExtendedInfo, imageView: ImageView)
     }
 }
