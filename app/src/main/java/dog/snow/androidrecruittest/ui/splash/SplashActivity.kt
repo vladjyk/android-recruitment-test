@@ -53,7 +53,7 @@ class SplashActivity : AppCompatActivity(R.layout.activity_splash), KodeinAware 
             val isCached = cachingHelper.isDataAlreadyCached()
 
             launch(Main) {
-                MaterialAlertDialogBuilder(this@SplashActivity).apply {
+                MaterialAlertDialogBuilder(this@SplashActivity, R.style.DialogStyle).apply {
                     setTitle(R.string.cant_download_dialog_title)
                     setMessage(getString(
                             R.string.cant_download_dialog_message,

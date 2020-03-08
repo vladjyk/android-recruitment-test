@@ -3,12 +3,22 @@
 
     <style name="Widget.AppTheme.AppBar" parent="@style/Widget.Design.AppBarLayout" />
 
-    <style name="Widget.AppTheme.Banner" parent="@style/Widget.MaterialComponents.TextView" />
+    <style name="Widget.AppTheme.Banner" parent="@style/Widget.MaterialComponents.TextView" >
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/sd_color_white</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">2dp</item>
+    </style>
 
-    <style name="SearchEditTextStyle">
-        <item name="android:background">@drawable/bg_search_selector</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:imeOptions">flagNoExtractUi</item>
-        <item name="android:inputType">textCapSentences</item>
+    <style name="DialogStyle" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="colorPrimary">@color/color_primary_dark</item>
+        <item name="colorSecondary">@color/color_primary</item>
+        <item name="colorSurface">@color/color_surface</item>
+    </style>
+
+    <style name="ProgressBarStyle">
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
+        <item name="android:indeterminateTint">@color/color_accent</item>
     </style>
 </resources>

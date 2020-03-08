@@ -22,7 +22,7 @@ class PhotosListFragmentVM(private val repository: Repository): ViewModel() {
 
     fun fetchWithTitle(title: String){
         GlobalScope.launch {
-            val photos = repository.getPhotosWithExtendedInfo(title.toLowerCase())
+            val photos = repository.getPhotosWithExtendedInfo(title)
             photosLive.postValue(photos)
         }
     }
