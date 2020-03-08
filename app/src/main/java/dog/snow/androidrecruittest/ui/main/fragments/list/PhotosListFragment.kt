@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.*
+import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -67,7 +68,7 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
 
         fun initSearch(){
             val searchView = menu.findItem(R.id.action_search).actionView as SearchView
-
+            searchView.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
