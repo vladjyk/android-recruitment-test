@@ -24,8 +24,8 @@
         style="@style/Widget.AppTheme.Banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_accent"
+        android:background="@color/color_error"
         android:text="@string/offline_mode"
-        android:visibility="visible"
+        android:visibility="gone"
         tools:visibility="visible" />
 </com.google.android.material.appbar.AppBarLayout>
