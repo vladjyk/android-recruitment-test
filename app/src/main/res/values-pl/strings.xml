@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Zadanie Rekrutacyjne</string>
+    <string name="search_hint">Szukaj…</string>
+    <string name="empty_list">Brak zdjęć do wyświetlenia…</string>
+    <string name="empty_filter_list">No items to show for filter: %s</string>
+    <string name="banner_offline_mode_msg">Tryb offline</string>
+    <string name="banner_connection_established_msg">Połączenie zostało nawiązane</string>
+    <string name="cant_download_dialog_title">Nie udało się pobrać potrzebnych danych</string>
+    <string name="cant_download_dialog_message">Nie udało się pobrać dane przez to że:\n%s\nSprawdź swoje połączenie internetowe.</string>
+    <string name="slow_connectivity_dialog_message">Masz słabe połączenie z internetem lub serwer jest niedostęny.</string>
+    <string name="network_is_disabled_dialog_message">Internet jest wyłączony.</string>
+    <string name="cant_download_dialog_btn_positive">Spóbuj ponownie</string>
+    <string name="cant_download_dialog_btn_negative">Zamknij</string>
+    <string name="cant_download_dialog_btn_neutral">Tryb offline</string>
+</resources>
