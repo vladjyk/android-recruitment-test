@@ -5,7 +5,7 @@ import dog.snow.androidrecruittest.data.Repository
 import dog.snow.androidrecruittest.data.db.ApplicationDatabase
 import dog.snow.androidrecruittest.data.network.service.JsonPlaceholderApiService
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver
-import dog.snow.androidrecruittest.ui.main.child.viewmodel.PhotoDetailActivityVMF
+import dog.snow.androidrecruittest.ui.main.detail.viewmodel.PhotoDetailActivityVMF
 import dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.PhotosListFragmentVMF
 import dog.snow.androidrecruittest.util.DataCachingHelper
 import dog.snow.androidrecruittest.util.NetworkUtil

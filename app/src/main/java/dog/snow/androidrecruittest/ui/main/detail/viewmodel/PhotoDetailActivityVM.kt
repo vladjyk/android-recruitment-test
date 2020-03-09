@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.main.child.viewmodel
+package dog.snow.androidrecruittest.ui.main.detail.viewmodel
 
 import androidx.lifecycle.ViewModel
 import dog.snow.androidrecruittest.data.Repository

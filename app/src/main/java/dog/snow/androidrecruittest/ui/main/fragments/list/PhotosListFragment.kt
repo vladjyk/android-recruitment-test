@@ -44,7 +44,6 @@ class PhotosListFragment : Fragment(), KodeinAware, PhotosListAdapter.ItemIntera
             viewModel.getPhotosWithExtendedInfo().observe(viewLifecycleOwner, Observer {
                 binding.photos = it
             })
-            viewModel.fetchAll()
         }
 
         initBinding()

@@ -11,7 +11,10 @@ import kotlinx.coroutines.launch
 class PhotosListFragmentVM(private val repository: Repository): ViewModel() {
     private val photosLive = MutableLiveData<List<PhotoWithExtendedInfo>>()
 
-    fun getPhotosWithExtendedInfo() = photosLive as LiveData<List<PhotoWithExtendedInfo>>
+    fun getPhotosWithExtendedInfo(): LiveData<List<PhotoWithExtendedInfo>> {
+        fetchAll()
+        return photosLive
+    }
 
     fun fetchAll(){
         GlobalScope.launch {

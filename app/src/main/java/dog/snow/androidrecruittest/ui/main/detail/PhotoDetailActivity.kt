@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.main.child
+package dog.snow.androidrecruittest.ui.main.detail
 
 import android.os.Bundle
 import android.transition.Fade
@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.ActivityPhotoDetailBinding
-import dog.snow.androidrecruittest.ui.main.child.viewmodel.PhotoDetailActivityVM
-import dog.snow.androidrecruittest.ui.main.child.viewmodel.PhotoDetailActivityVMF
+import dog.snow.androidrecruittest.ui.main.detail.viewmodel.PhotoDetailActivityVM
+import dog.snow.androidrecruittest.ui.main.detail.viewmodel.PhotoDetailActivityVMF
 import kotlinx.android.synthetic.main.appbar_child_layout.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope
@@ -17,7 +17,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 
-const val EXTRA_PHOTO_ID = "dog.snow.androidrecruittest.ui.main.child.photoid"
+const val EXTRA_PHOTO_ID = "dog.snow.androidrecruittest.ui.main.detail.photoid"
 
 class PhotoDetailActivity : AppCompatActivity(), KodeinAware{
     override val kodein by closestKodein()

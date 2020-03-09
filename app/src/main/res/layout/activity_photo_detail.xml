@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <import type="dog.snow.androidrecruittest.ui.main.child.viewmodel.model.PhotoDetail"/>
+        <import type="dog.snow.androidrecruittest.ui.main.detail.viewmodel.model.PhotoDetail"/>
 
         <variable
             name="photoDetail"

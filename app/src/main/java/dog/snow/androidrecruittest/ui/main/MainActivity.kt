@@ -13,8 +13,8 @@ import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.CONNECTED
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.DISCONNECTED
-import dog.snow.androidrecruittest.ui.main.child.EXTRA_PHOTO_ID
-import dog.snow.androidrecruittest.ui.main.child.PhotoDetailActivity
+import dog.snow.androidrecruittest.ui.main.detail.EXTRA_PHOTO_ID
+import dog.snow.androidrecruittest.ui.main.detail.PhotoDetailActivity
 import dog.snow.androidrecruittest.util.ViewAnimationUtils
 import kotlinx.android.synthetic.main.appbar_main_layout.*
 import org.kodein.di.KodeinAware

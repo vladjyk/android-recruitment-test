@@ -2,7 +2,7 @@ package dog.snow.androidrecruittest.data.db.entityes.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import dog.snow.androidrecruittest.ui.main.child.viewmodel.model.PhotoDetail
+import dog.snow.androidrecruittest.ui.main.detail.viewmodel.model.PhotoDetail
 
 @Dao
 interface PhotoDetailDao {
