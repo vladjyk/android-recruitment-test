@@ -37,31 +37,7 @@ object ViewAnimationUtils {
         v.startAnimation(a)
     }
 
-    fun collapse(v: View) {
-        val initialHeight = v.measuredHeight
-
-        val a = object : Animation() {
-
-            override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
-                if (interpolatedTime == 1f) {
-                    v.visibility = GONE
-                } else {
-                    v.layoutParams.height =
-                        initialHeight - (initialHeight * interpolatedTime).toInt()
-                    v.requestLayout()
-                }
-            }
-
-            override fun willChangeBounds(): Boolean {
-                return true
-            }
-        }
-
-        a.duration = (initialHeight / v.context.resources.displayMetrics.density).toLong()
-        v.startAnimation(a)
-    }
-
-    fun collapseSlowly(v: View){
+    fun collapse(v: View){
         val initialHeight = v.measuredHeight
 
         val a = object : Animation() {

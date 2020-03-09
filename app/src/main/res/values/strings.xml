@@ -3,7 +3,8 @@
     <string name="search_hint">Search…</string>
     <string name="empty_list">No items to show…</string>
     <string name="empty_filter_list">No items to show for filter: %s</string>
-    <string name="offline_mode">You\'re in offline mode</string>
+    <string name="banner_offline_mode_msg">You\'re in offline mode</string>
+    <string name="banner_connection_established_msg">Connection has been established</string>
     <string name="cant_download_dialog_title">Can\'t download necessary data!</string>
     <string name="cant_download_dialog_message">Can\'t download data because of error:\n%s\nCheck your internet connection.</string>
     <string name="slow_connectivity_dialog_message">You have slow internet connection or server is not available.</string>

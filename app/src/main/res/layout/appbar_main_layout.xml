@@ -6,7 +6,6 @@
     style="@style/Widget.AppTheme.AppBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:animateLayoutChanges="true"
     android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -20,12 +19,12 @@
         app:logo="@drawable/ic_logo_appbar" />
 
     <TextView
-        android:id="@+id/banner"
+        android:id="@+id/bannerTV"
         style="@style/Widget.AppTheme.Banner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_error"
-        android:text="@string/offline_mode"
+        tools:text="@string/banner_offline_mode_msg"
         android:visibility="gone"
         tools:visibility="visible" />
 </com.google.android.material.appbar.AppBarLayout>
