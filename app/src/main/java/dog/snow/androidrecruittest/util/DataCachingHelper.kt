@@ -25,16 +25,16 @@ class DataCachingHelper(private val repository: Repository, private val networkU
             withTimeout(NETWORK_TIMEOUT, {
                 val albumsMap = HashMap<Int, Album>()
                 val usersMap = HashMap<Int, User>()
-                val photos = repository.getPhotos()
+                val photos = repository.getPhotosFromApi()
 
                 photos.forEach { photo ->
                     if (albumsMap[photo.albumId] == null)
-                        albumsMap[photo.albumId] = repository.getAlbum(photo.albumId)
+                        albumsMap[photo.albumId] = repository.getAlbumFromApi(photo.albumId)
 
                     val userId = albumsMap[photo.albumId]!!.userId
 
                     if (usersMap[userId] == null)
-                        usersMap[userId] = repository.getUser(userId)
+                        usersMap[userId] = repository.getUserFromApi(userId)
                 }
 
                 repository.apply {

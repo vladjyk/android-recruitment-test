@@ -44,15 +44,15 @@ class Repository(private val placeholderApiService: JsonPlaceholderApiService, d
     fun getUsersCount() = userDao.getItemsCount()
 
 
-    suspend fun getPhotos(limit: Int = 100) = retryIO{
+    suspend fun getPhotosFromApi(limit: Int = 100) = retryIO{
        return@retryIO placeholderApiService.getPhotos(limit).await()
     }
 
-    suspend fun getAlbum(albumId: Int) = retryIO {
+    suspend fun getAlbumFromApi(albumId: Int) = retryIO {
         return@retryIO placeholderApiService.getAlbum(albumId).await()
     }
 
-    suspend fun getUser(userId: Int) = retryIO {
+    suspend fun getUserFromApi(userId: Int) = retryIO {
         return@retryIO placeholderApiService.getUser(userId).await()
     }
 
