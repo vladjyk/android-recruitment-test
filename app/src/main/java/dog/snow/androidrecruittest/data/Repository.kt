@@ -10,6 +10,7 @@ import dog.snow.androidrecruittest.util.retryIO
 class Repository(private val placeholderApiService: JsonPlaceholderApiService, database: ApplicationDatabase){
     private val photoWithExtendedInfoDao = database.photoWithExtendInfoDao()
     private val photoDetailDao = database.photoDetailDao()
+
     private val photoDao = database.photoDao()
     private val albumDao = database.albumDao()
     private val userDao = database.userDao()

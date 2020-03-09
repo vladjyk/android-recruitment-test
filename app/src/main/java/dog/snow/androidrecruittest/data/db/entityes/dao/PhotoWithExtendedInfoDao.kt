@@ -1,9 +1,8 @@
 package dog.snow.androidrecruittest.data.db.entityes.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Query
-import dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo
+import dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.model.PhotoWithExtendedInfo
 
 @Dao
 interface PhotoWithExtendedInfoDao {

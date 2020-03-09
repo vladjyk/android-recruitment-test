@@ -7,8 +7,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.ActivityPhotoDetailBinding
-import dog.snow.androidrecruittest.ui.main.child.vm.PhotoDetailActivityVM
-import dog.snow.androidrecruittest.ui.main.child.vm.PhotoDetailActivityVMF
+import dog.snow.androidrecruittest.ui.main.child.viewmodel.PhotoDetailActivityVM
+import dog.snow.androidrecruittest.ui.main.child.viewmodel.PhotoDetailActivityVMF
 import kotlinx.android.synthetic.main.appbar_child_layout.*
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.GlobalScope

@@ -1,4 +1,4 @@
-package dog.snow.androidrecruittest.ui.main.fragments.list.vm
+package dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

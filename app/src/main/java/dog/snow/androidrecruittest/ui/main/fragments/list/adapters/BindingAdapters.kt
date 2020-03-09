@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import dog.snow.androidrecruittest.R
-import dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo
+import dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.model.PhotoWithExtendedInfo
 
 class BindingAdapters {
     companion object {

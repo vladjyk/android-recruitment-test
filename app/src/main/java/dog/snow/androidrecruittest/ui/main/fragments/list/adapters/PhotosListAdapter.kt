@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dog.snow.androidrecruittest.R
 import dog.snow.androidrecruittest.databinding.PhotosListItemBinding
-import dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo
+import dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.model.PhotoWithExtendedInfo
 
 private val ITEM_LAYOUT = R.layout.photos_list_item
 

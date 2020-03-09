@@ -1,10 +1,10 @@
-package dog.snow.androidrecruittest.ui.main.fragments.list.vm
+package dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dog.snow.androidrecruittest.data.Repository
-import dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo
+import dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.model.PhotoWithExtendedInfo
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

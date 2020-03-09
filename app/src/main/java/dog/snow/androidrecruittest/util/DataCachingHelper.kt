@@ -17,10 +17,12 @@ class DataCachingHelper(private val repository: Repository, private val networkU
 
     suspend fun startCaching(onSuccess: () -> Unit) {
         if (!isLocked) {
-            if (!networkUtil.isNetworkAvailable())
-                throw NetworkDisabledException()
-
             isLocked = true
+
+            if (!networkUtil.isNetworkAvailable()) {
+                isLocked = false
+                throw NetworkDisabledException()
+            }
 
             withTimeout(NETWORK_TIMEOUT, {
                 val albumsMap = HashMap<Int, Album>()

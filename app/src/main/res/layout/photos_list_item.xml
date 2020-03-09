@@ -2,7 +2,7 @@
 
 <layout>
     <data>
-        <import type="dog.snow.androidrecruittest.ui.main.fragments.list.model.PhotoWithExtendedInfo"/>
+        <import type="dog.snow.androidrecruittest.ui.main.fragments.list.viewmodel.model.PhotoWithExtendedInfo"/>
 
         <variable
             name="item"
