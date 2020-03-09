@@ -8,7 +8,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.Main
 
 private const val TAG = "DataCachingHelper"
-private const val NETWORK_TIMEOUT = 5000L
+private const val NETWORK_TIMEOUT = 7000L
 
 class DataCachingHelper(private val repository: Repository, private val networkUtil: NetworkUtil) {
 
