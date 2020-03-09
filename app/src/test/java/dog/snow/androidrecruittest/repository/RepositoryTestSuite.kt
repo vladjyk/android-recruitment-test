@@ -5,4 +5,4 @@ import org.junit.runners.Suite
 
 @RunWith(Suite::class)
 @Suite.SuiteClasses(MockAlbumApiTest::class, MockUserApiTest::class, MockPhotoApiTest::class)
-class RepositoryTestSuit
+class RepositoryTestSuite
