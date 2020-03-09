@@ -92,4 +92,7 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //JSON converter
+    implementation"com.squareup.moshi:moshi-kotlin:1.9.2"
 }

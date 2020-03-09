@@ -1,20 +1,23 @@
 package dog.snow.androidrecruittest.repository.loaders
 
+import com.google.gson.Gson
+
+
 class MockModelLoader {
     private val mockLoader: MockLoader = MockLoader.createResourceLoader()
 
-    fun <T> loadPhotos(classObject: Class<T>): List<T>? {
+    fun <T> loadPhotos(classObject: Class<Array<T>>): List<T> {
         val json = mockLoader.loadJson("mocks/photos.json")
-        TODO("not implemented")
+        return Gson().fromJson(json,classObject).toList()
     }
 
-    fun <T> loadAlbums(classObject: Class<T>): List<T>? {
+    fun <T> loadAlbums(classObject: Class<Array<T>>): List<T> {
         val json = mockLoader.loadJson("mocks/albums.json")
-        TODO("not implemented")
+        return Gson().fromJson(json,classObject).toList()
     }
 
-    fun <T> loadUsers(classObject: Class<T>): List<T>? {
+    fun <T> loadUsers(classObject: Class<Array<T>>): List<T> {
         val json = mockLoader.loadJson("mocks/users.json")
-        TODO("not implemented")
+        return Gson().fromJson(json,classObject).toList()
     }
 }

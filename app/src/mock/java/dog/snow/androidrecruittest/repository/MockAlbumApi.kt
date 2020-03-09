@@ -1,19 +1,18 @@
 package dog.snow.androidrecruittest.repository
 
+import dog.snow.androidrecruittest.data.db.entityes.Album
 import dog.snow.androidrecruittest.repository.loaders.MockModelLoader
-import dog.snow.androidrecruittest.repository.model.RawAlbum
-import dog.snow.androidrecruittest.repository.service.AlbumService
+import dog.snow.androidrecruittest.repository.services.AlbumService
+
 
 class MockAlbumApi(
     private val mockModelLoader: MockModelLoader
 ) : AlbumService {
-    fun loadAlbums(): List<RawAlbum> {
-        val albums = mockModelLoader.loadAlbums(RawAlbum::class.java)
-        TODO("not implemented")
+    fun loadAlbums(): List<Album> {
+        return mockModelLoader.loadAlbums(Array<Album>::class.java)
     }
 
-    fun loadAlbum(albumId: Int): RawAlbum {
-        val album = mockModelLoader.loadAlbums(RawAlbum::class.java)?.find { it.id == albumId }
-        TODO("not implemented")
+    fun loadAlbum(albumId: Int): Album? {
+        return mockModelLoader.loadAlbums(Array<Album>::class.java).find { it.id == albumId }
     }
 }

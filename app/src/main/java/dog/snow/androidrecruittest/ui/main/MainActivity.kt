@@ -1,18 +1,22 @@
 package dog.snow.androidrecruittest.ui.main
 
+import android.R.id.message
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.transition.Fade
+import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import dog.snow.androidrecruittest.R
+import dog.snow.androidrecruittest.data.db.entityes.Photo
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.CONNECTED
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.DISCONNECTED
+import dog.snow.androidrecruittest.repository.loaders.MockModelLoader
 import dog.snow.androidrecruittest.ui.main.detail.EXTRA_PHOTO_ID
 import dog.snow.androidrecruittest.ui.main.detail.PhotoDetailActivity
 import dog.snow.androidrecruittest.util.ViewAnimationUtils
@@ -20,6 +24,7 @@ import kotlinx.android.synthetic.main.appbar_main_layout.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
+
 
 class MainActivity : AppCompatActivity(R.layout.activity_main), KodeinAware, NetworkStateChangesReceiver.ConnectivityStatusChangeListener{
     override val kodein by closestKodein()
@@ -42,6 +47,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), KodeinAware, Net
         super.onCreate(savedInstanceState)
         initToolbar()
         registerNetworkStatusReceiver()
+
+        /*val mockModelLoader = MockModelLoader()
+        val loadPhotos = mockModelLoader.loadPhotos(Array<Photo>::class.java)
+        loadPhotos?.forEach {
+            Log.wtf("PHOTO", it.toString())
+        }*/
     }
 
     override fun onDestroy() {
