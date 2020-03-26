@@ -1,22 +1,18 @@
 package dog.snow.androidrecruittest.ui.main
 
-import android.R.id.message
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.os.Handler
 import android.transition.Fade
-import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import dog.snow.androidrecruittest.R
-import dog.snow.androidrecruittest.data.db.entityes.Photo
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.CONNECTED
 import dog.snow.androidrecruittest.receiver.NetworkStateChangesReceiver.Status.DISCONNECTED
-import dog.snow.androidrecruittest.repository.loaders.MockModelLoader
 import dog.snow.androidrecruittest.ui.main.detail.EXTRA_PHOTO_ID
 import dog.snow.androidrecruittest.ui.main.detail.PhotoDetailActivity
 import dog.snow.androidrecruittest.util.ViewAnimationUtils
